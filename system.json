@@ -1,14 +1,29 @@
 {
+    "name": "shadowrun4",
     "id": "shadowrun4",
     "title": "Shadowrun 4th Edition",
     "description": "Shadowrun 4th edition according to 20th Anniversary core rule book",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "authors": [
         {
             "name": "tomer shmaya",
             "email": "shmaya.tomer@gmail.com"
         }
     ],
+	"esmodules": ["module/simple.js"],
+	"styles": ["styles/simple.css"],
+	"packs": [],
+	"languages": [
+		{
+		  "lang": "en",
+		  "name": "English",
+		  "path": "lang/en.json"
+		}
+	],
     "gridDistance": 1,
-    "gridUnits": "m"
+    "gridUnits": "m",
+	"primaryTokenAttribute": "health",
+	"url": "https://github.com/tshma/sr4-fvtt",
+    "compatibleCoreVersion": "9",
+    "minimumCoreVersion": "9"
 }

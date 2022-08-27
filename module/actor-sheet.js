@@ -1,5 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
-import {ATTRIBUTE_TYPES} from "./constants.js";
+import { ATTRIBUTE_TYPES } from "./constants.js";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -10,8 +10,8 @@ export class SimpleActorSheet extends ActorSheet {
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["worldbuilding", "sheet", "actor"],
-      template: "systems/worldbuilding/templates/actor-sheet.html",
+      classes: ["shadowrun4", "sheet", "actor"],
+      template: "systems/shadowrun4/templates/actor-sheet.html",
       width: 600,
       height: 600,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
@@ -26,7 +26,7 @@ export class SimpleActorSheet extends ActorSheet {
   getData() {
     const context = super.getData();
     EntitySheetHelper.getAttributeData(context.data);
-    context.shorthand = !!game.settings.get("worldbuilding", "macroShorthand");
+    context.shorthand = !!game.settings.get("shadowrun4", "macroShorthand");
     context.systemData = context.data.data;
     context.dtypes = ATTRIBUTE_TYPES;
     return context;

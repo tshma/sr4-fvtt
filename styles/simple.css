@@ -1,17 +1,17 @@
-.worldbuilding {
+.shadowrun4 {
   /* Sheet Tabs */
   /* Items List */
   /* Attributes */
 }
-.worldbuilding .window-content {
+.shadowrun4 .window-content {
   height: 100%;
   padding: 5px;
   overflow-y: hidden;
 }
-.worldbuilding form {
+.shadowrun4 form {
   height: 100%;
 }
-.worldbuilding .sheet-header {
+.shadowrun4 .sheet-header {
   flex: 0 0 100px;
   overflow: hidden;
   display: flex;
@@ -20,85 +20,85 @@
   justify-content: flex-start;
   margin-bottom: 10px;
 }
-.worldbuilding .sheet-header .profile-img {
+.shadowrun4 .sheet-header .profile-img {
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
 }
-.worldbuilding .sheet-header .header-fields {
+.shadowrun4 .sheet-header .header-fields {
   flex: 1;
   height: 100px;
 }
-.worldbuilding .sheet-header h1.charname {
+.shadowrun4 .sheet-header h1.charname {
   height: 50px;
   padding: 0px;
   margin: 5px 0;
   border-bottom: 0;
 }
-.worldbuilding .sheet-header h1.charname input {
+.shadowrun4 .sheet-header h1.charname input {
   width: 100%;
   height: 100%;
   margin: 0;
 }
-.worldbuilding .resource {
+.shadowrun4 .resource {
   width: 50%;
   height: 40px;
   margin-top: 10px;
   float: left;
   text-align: center;
 }
-.worldbuilding .resource input {
+.shadowrun4 .resource input {
   width: 100px;
   height: 28px;
 }
-.worldbuilding .tabs {
+.shadowrun4 .tabs {
   flex: 0 0 40px;
   border-top: 1px solid #AAA;
   border-bottom: 1px solid #AAA;
 }
-.worldbuilding .tabs .item {
+.shadowrun4 .tabs .item {
   line-height: 40px;
   font-weight: bold;
 }
-.worldbuilding .tabs .item.active {
+.shadowrun4 .tabs .item.active {
   text-decoration: underline;
   text-shadow: none;
 }
-.worldbuilding .sheet-body {
+.shadowrun4 .sheet-body {
   overflow: hidden;
 }
-.worldbuilding .sheet-body .tab {
+.shadowrun4 .sheet-body .tab {
   height: 100%;
   overflow-y: auto;
 }
-.worldbuilding .editor,
-.worldbuilding .editor-content {
+.shadowrun4 .editor,
+.shadowrun4 .editor-content {
   height: 100%;
 }
-.worldbuilding .item-list {
+.shadowrun4 .item-list {
   list-style: none;
   margin: 7px 0;
   padding: 0;
   overflow-y: auto;
 }
-.worldbuilding .item-list .item {
+.shadowrun4 .item-list .item {
   min-height: 30px;
   line-height: 24px;
   padding: 3px 0;
   border-bottom: 1px solid #BBB;
   align-items: stretch;
 }
-.worldbuilding .item-list .item img {
+.shadowrun4 .item-list .item img {
   flex: 0 0 24px;
   margin-right: 5px;
 }
-.worldbuilding .item-list .item-name {
+.shadowrun4 .item-list .item-name {
   margin: 0;
 }
-.worldbuilding .item-list .item-controls {
+.shadowrun4 .item-list .item-controls {
   flex: 0 0 36px;
 }
-.worldbuilding .item-list .item-buttons {
+.shadowrun4 .item-list .item-buttons {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -106,23 +106,23 @@
   flex: 2;
   justify-content: flex-start;
 }
-.worldbuilding .item-list .item-button {
+.shadowrun4 .item-list .item-button {
   line-height: 1;
   font-size: 11px;
   flex: none;
   width: auto;
 }
-.worldbuilding .attributes {
+.shadowrun4 .attributes {
   position: relative;
 }
-.worldbuilding .attributes .attribute-control,
-.worldbuilding .attributes .group-control {
+.shadowrun4 .attributes .attribute-control,
+.shadowrun4 .attributes .group-control {
   flex: 0 0 20px;
   text-align: center;
   line-height: 28px;
   border: none;
 }
-.worldbuilding .attributes .attribute-roll {
+.shadowrun4 .attributes .attribute-roll {
   flex: 0 0 20px;
   text-align: center;
   border-bottom: none;
@@ -130,11 +130,11 @@
   align-items: center;
   justify-content: center;
 }
-.worldbuilding .attributes .group-prefix {
+.shadowrun4 .attributes .group-prefix {
   height: 31px;
   margin-right: 10px;
 }
-.worldbuilding .attributes .button {
+.shadowrun4 .attributes .button {
   width: 100%;
   flex: 1;
   margin: 0;
@@ -145,11 +145,11 @@
   line-height: 28px;
   display: block;
 }
-.worldbuilding .attributes .attribute-key {
+.shadowrun4 .attributes .attribute-key {
   background: transparent;
   border: none;
 }
-.worldbuilding .attributes-header {
+.shadowrun4 .attributes-header {
   position: sticky;
   top: 0;
   left: 0;
@@ -162,12 +162,12 @@
   text-align: left;
   font-weight: bold;
 }
-.worldbuilding .attributes-list {
+.shadowrun4 .attributes-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.worldbuilding .attributes-list li > * {
+.shadowrun4 .attributes-list li > * {
   margin: 0 3px;
   height: 28px;
   line-height: 24px;
@@ -176,47 +176,47 @@
   border-radius: 0;
   border-bottom: 1px solid #AAA;
 }
-.worldbuilding .attributes-list .attribute-col label {
+.shadowrun4 .attributes-list .attribute-col label {
   font-size: 10px;
   text-align: center;
   line-height: 1;
 }
-.worldbuilding .attributes-list .attribute-col input {
+.shadowrun4 .attributes-list .attribute-col input {
   font-size: 11px;
   text-align: center;
   line-height: 1;
   height: 50%;
 }
-.worldbuilding .attribute input[type="text"]::placeholder,
-.worldbuilding .group-header input[type="text"]::placeholder {
+.shadowrun4 .attribute input[type="text"]::placeholder,
+.shadowrun4 .group-header input[type="text"]::placeholder {
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
 }
-.worldbuilding .attribute input[type="text"]:focus::placeholder,
-.worldbuilding .group-header input[type="text"]:focus::placeholder {
+.shadowrun4 .attribute input[type="text"]:focus::placeholder,
+.shadowrun4 .group-header input[type="text"]:focus::placeholder {
   opacity: 1;
 }
-.worldbuilding .group-controls {
+.shadowrun4 .group-controls {
   margin: 5px;
 }
-.worldbuilding .groups-list {
+.shadowrun4 .groups-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.worldbuilding .group {
+.shadowrun4 .group {
   margin: 5px 0 0;
   padding: 0;
 }
-.worldbuilding .group-header {
+.shadowrun4 .group-header {
   align-items: center;
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid #AAA;
   border-radius: 2px;
   padding: 2px 5px;
 }
-.worldbuilding .group-key,
-.worldbuilding .group-label {
+.shadowrun4 .group-key,
+.shadowrun4 .group-label {
   font-weight: bold;
   border: none;
   border-bottom: 1px solid #AAA;
@@ -224,22 +224,22 @@
   border-radius: 0;
   margin-right: 6px;
 }
-.worldbuilding .group-key {
+.shadowrun4 .group-key {
   opacity: 0.75;
 }
-.worldbuilding .group-label {
+.shadowrun4 .group-label {
   flex: 2;
 }
-.worldbuilding .group-dtype {
+.shadowrun4 .group-dtype {
   height: 24px;
   flex: 0 0 116px;
   margin: 0 5px;
 }
-.worldbuilding.sheet.actor {
+.shadowrun4.sheet.actor {
   min-width: 560px;
   min-height: 420px;
 }
-.worldbuilding.sheet.item {
+.shadowrun4.sheet.item {
   min-width: 460px;
   min-height: 400px;
 }
