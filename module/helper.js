@@ -1,9 +1,8 @@
 import { ATTRIBUTE_TYPES } from "./constants.js";
 
-export class EntitySheetHelper {
+export function EntitySheetHelper() {};
 
-  static getAttributeData(data) {
-
+EntitySheetHelper.getAttributeData = function(data) {
     // Determine attribute type.
     for ( let attr of Object.values(data.data.attributes) ) {
       if ( attr.dtype ) {
@@ -89,7 +88,7 @@ export class EntitySheetHelper {
   /* -------------------------------------------- */
 
   /** @override */
-  static onSubmit(event) {
+EntitySheetHelper.onSubmit = function(event) {
     // Closing the form/sheet will also trigger a submit, so only evaluate if this is an event.
     if ( event.currentTarget ) {
       // Exit early if this isn't a named attribute.
@@ -132,7 +131,7 @@ export class EntitySheetHelper {
    * Listen for click events on an attribute control to modify the composition of attributes in the sheet
    * @param {MouseEvent} event    The originating left click event
    */
-  static async onClickAttributeControl(event) {
+EntitySheetHelper.onClickAttributeControl = async function (event) {
     event.preventDefault();
     const a = event.currentTarget;
     const action = a.dataset.action;
@@ -150,7 +149,7 @@ export class EntitySheetHelper {
    * Listen for click events and modify attribute groups.
    * @param {MouseEvent} event    The originating left click event
    */
-  static async onClickAttributeGroupControl(event) {
+EntitySheetHelper.onClickAttributeGroupControl = async function (event) {
     event.preventDefault();
     const a = event.currentTarget;
     const action = a.dataset.action;
@@ -168,7 +167,7 @@ export class EntitySheetHelper {
    * Listen for the roll button on attributes.
    * @param {MouseEvent} event    The originating left click event
    */
-  static onAttributeRoll(event) {
+EntitySheetHelper.onAttributeRoll = function(event) {
     event.preventDefault();
     const button = event.currentTarget;
     const label = button.closest(".attribute").querySelector(".attribute-label")?.value;
@@ -209,7 +208,7 @@ export class EntitySheetHelper {
    *
    * @returns {string} Html string.
    */
-  static getAttributeHtml(items, index, group = false) {
+EntitySheetHelper.getAttributeHtml = function (items, index, group = false) {
     // Initialize the HTML.
     let result = '<div style="display: none;">';
     // Iterate over the supplied keys and build their inputs (including whether or not they need a group key).
@@ -228,7 +227,7 @@ export class EntitySheetHelper {
    * @param {Document} document   The Actor or Item instance within which the group is being defined
    * @returns {boolean}
    */
-  static validateGroup(groupName, document) {
+EntitySheetHelper.validateGroup = function (groupName, document) {
     let groups = Object.keys(document.data.data.groups || {});
     let attributes = Object.keys(document.data.data.attributes).filter(a => !groups.includes(a));
 
@@ -266,7 +265,7 @@ export class EntitySheetHelper {
    * @param {Object} app          The form application object.
    * @private
    */
-  static async createAttribute(event, app) {
+EntitySheetHelper.createAttribute = async function (event, app) {
     const a = event.currentTarget;
     const group = a.dataset.group;
     let dtype = a.dataset.dtype;
@@ -341,7 +340,7 @@ export class EntitySheetHelper {
    * @param {Object} app          The form application object.
    * @private
    */
-  static async deleteAttribute(event, app) {
+EntitySheetHelper.deleteAttribute = async function (event, app) {
     const a = event.currentTarget;
     const li = a.closest(".attribute");
     if ( li ) {
@@ -358,7 +357,7 @@ export class EntitySheetHelper {
    * @param {Object} app          The form application object.
    * @private
    */
-  static async createAttributeGroup(event, app) {
+EntitySheetHelper.createAttributeGroup = async function (event, app) {
     const a = event.currentTarget;
     const form = app.form;
     let newValue = $(a).siblings('.group-prefix').val();
@@ -381,7 +380,7 @@ export class EntitySheetHelper {
    * @param {Object} app          The form application object.
    * @private
    */
-  static async deleteAttributeGroup(event, app) {
+EntitySheetHelper.deleteAttributeGroup = async function (event, app) {
     const a = event.currentTarget;
     let groupHeader = a.closest(".group-header");
     let groupContainer = groupHeader.closest(".group");
@@ -415,7 +414,7 @@ export class EntitySheetHelper {
    * @param {Document} document     The Actor or Item document within which attributes are being updated
    * @returns {object}              The updated formData object.
    */
-  static updateAttributes(formData, document) {
+EntitySheetHelper.updateAttributes = function (formData, document) {
     let groupKeys = [];
 
     // Handle the free-form attributes list
@@ -484,7 +483,7 @@ export class EntitySheetHelper {
    * @param {Document} document     The Actor or Item document within which attributes are being updated
    * @returns {object}              The updated formData object.
    */
-  static updateGroups(formData, document) {
+EntitySheetHelper.updateGroups = function(formData, document) {
     // Handle the free-form groups list
     const formGroups = expandObject(formData).data.groups || {};
     const documentGroups = Object.keys(document.data.data.groups || {});
@@ -527,7 +526,7 @@ export class EntitySheetHelper {
   /**
    * @see ClientDocumentMixin.createDialog
    */
-  static async createDialog(data={}, options={}) {
+EntitySheetHelper.createDialog = async function(data={}, options={}) {
 
     // Collect data
     const documentName = this.metadata.name;
@@ -594,7 +593,7 @@ export class EntitySheetHelper {
    * Ensure the resource values are within the specified min and max.
    * @param {object} attrs  The Document's attributes.
    */
-  static clampResourceValues(attrs) {
+EntitySheetHelper.clampResourceValues = function (attrs) {
     const flat = foundry.utils.flattenObject(attrs);
     for ( const [attr, value] of Object.entries(flat) ) {
       const parts = attr.split(".");
@@ -604,4 +603,3 @@ export class EntitySheetHelper {
       foundry.utils.setProperty(attrs, attr, Math.clamped(value, current.min || 0, current.max || 0));
     }
   }
-}

@@ -9,7 +9,7 @@ import { SimpleItem } from "./item.js";
 import { SimpleItemSheet } from "./item-sheet.js";
 import { SimpleActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
-import { createshadowrun4Macro } from "./macro.js";
+import { createShadowrun4Macro } from "./macro.js";
 import { SimpleToken, SimpleTokenDocument } from "./token.js";
 
 /* -------------------------------------------- */
@@ -33,7 +33,7 @@ Hooks.once("init", async function() {
 
   game.shadowrun4 = {
     SimpleActor,
-    createshadowrun4Macro,
+    createShadowrun4Macro,
     useEntity: foundry.utils.isNewerVersion("9", game.version ?? game.data.version)
   };
 
@@ -102,7 +102,7 @@ Hooks.once("init", async function() {
 /**
  * Macrobar hook.
  */
-Hooks.on("hotbarDrop", (bar, data, slot) => createshadowrun4Macro(data, slot));
+Hooks.on("hotbarDrop", (bar, data, slot) => createShadowrun4Macro(data, slot));
 
 /**
  * Adds the actor template context menu.
