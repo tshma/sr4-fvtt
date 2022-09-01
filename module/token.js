@@ -2,7 +2,7 @@
  * Extend the base TokenDocument to support resource type attributes.
  * @extends {TokenDocument}
  */
-export class SimpleTokenDocument extends TokenDocument {
+export class SR4TokenDocument extends TokenDocument {
   /** @inheritdoc */
   getBarAttribute(barName, {alternative}={}) {
     const data = super.getBarAttribute(barName, {alternative});
@@ -37,7 +37,7 @@ export class SimpleTokenDocument extends TokenDocument {
  * Extend the base Token class to implement additional system-specific logic.
  * @extends {Token}
  */
-export class SimpleToken extends Token {
+export class SR4Token extends Token {
   _drawBar(number, bar, data) {
     if ( "min" in data ) {
       // Copy the data to avoid mutating what the caller gave us.

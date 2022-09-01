@@ -4,13 +4,13 @@
  */
 
 // Import Modules
-import { SimpleActor } from "./actor.js";
-import { SimpleItem } from "./item.js";
-import { SimpleItemSheet } from "./item-sheet.js";
-import { SimpleActorSheet } from "./actor-sheet.js";
+import { SR4Actor } from "./actor.js";
+import { SR4Item } from "./item.js";
+import { SR4ItemSheet } from "./item-sheet.js";
+import { SR4ActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createShadowrun4Macro } from "./macro.js";
-import { SimpleToken, SimpleTokenDocument } from "./token.js";
+import { SR4Token, SR4TokenDocument } from "./token.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -20,7 +20,7 @@ import { SimpleToken, SimpleTokenDocument } from "./token.js";
  * Init hook.
  */
 Hooks.once("init", async function() {
-  console.log(`Initializing Simple shadowrun4 System`);
+  console.log(`Initializing Shadowrun4 System`);
 
   /**
    * Set an initiative formula for the system. This will be updated later.
@@ -32,27 +32,27 @@ Hooks.once("init", async function() {
   };
 
   game.shadowrun4 = {
-    SimpleActor,
+    SR4Actor: SR4Actor,
     createShadowrun4Macro,
     useEntity: foundry.utils.isNewerVersion("9", game.version ?? game.data.version)
   };
 
   // Define custom Document classes
-  CONFIG.Actor.documentClass = SimpleActor;
-  CONFIG.Item.documentClass = SimpleItem;
-  CONFIG.Token.documentClass = SimpleTokenDocument;
-  CONFIG.Token.objectClass = SimpleToken;
+  CONFIG.Actor.documentClass = SR4Actor;
+  CONFIG.Item.documentClass = SR4Item;
+  CONFIG.Token.documentClass = SR4TokenDocument;
+  CONFIG.Token.objectClass = SR4Token;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
-  Actors.registerSheet("shadowrun4", SimpleActorSheet, { makeDefault: true });
+  Actors.registerSheet("shadowrun4", SR4ActorSheet, { makeDefault: true });
   Items.unregisterSheet("core", ItemSheet);
-  Items.registerSheet("shadowrun4", SimpleItemSheet, { makeDefault: true });
+  Items.registerSheet("shadowrun4", SR4ItemSheet, { makeDefault: true });
 
   // Register system settings
   game.settings.register("shadowrun4", "macroShorthand", {
-    name: "SETTINGS.SimpleMacroShorthandN",
-    hint: "SETTINGS.SimpleMacroShorthandL",
+    name: "SETTINGS.SR4MacroShorthandN",
+    hint: "SETTINGS.SR4MacroShorthandL",
     scope: "world",
     type: Boolean,
     default: true,
@@ -61,25 +61,25 @@ Hooks.once("init", async function() {
 
   // Register initiative setting.
   game.settings.register("shadowrun4", "initFormula", {
-    name: "SETTINGS.SimpleInitFormulaN",
-    hint: "SETTINGS.SimpleInitFormulaL",
+    name: "SETTINGS.SR4InitFormulaN",
+    hint: "SETTINGS.SR4InitFormulaL",
     scope: "world",
     type: String,
     default: "1d20",
     config: true,
-    onChange: formula => _simpleUpdateInit(formula, true)
+    onChange: formula => _sr4UpdateInit(formula, true)
   });
 
   // Retrieve and assign the initiative formula setting.
   const initFormula = game.settings.get("shadowrun4", "initFormula");
-  _simpleUpdateInit(initFormula);
+  _sr4UpdateInit(initFormula);
 
   /**
    * Update the initiative formula.
    * @param {string} formula - Dice formula to evaluate.
    * @param {boolean} notify - Whether or not to post nofications.
    */
-  function _simpleUpdateInit(formula, notify = false) {
+  function _sr4UpdateInit(formula, notify = false) {
     const isValid = Roll.validate(formula);
     if ( !isValid ) {
       if ( notify ) ui.notifications.error(`${game.i18n.localize("SR4.NotifyInitFormulaInvalid")}: ${formula}`);
