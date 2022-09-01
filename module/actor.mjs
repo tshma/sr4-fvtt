@@ -1,4 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
+import Constants from './constants.mjs';
 
 /**
  * Extend the base Actor document to support attributes and groups with a custom template creation dialog.
@@ -6,12 +7,32 @@ import { EntitySheetHelper } from "./helper.js";
  */
 export class SR4Actor extends Actor {
 
+  _prepareRunnerData(actorData) {
+    if(actorData.type !== Constants.Types.Runner) {
+      return;
+    }
+
+    const data = actorData.data;
+    data.karma = Math.floor(Math.random() * 50);
+  }
+
+  _prepareNpcData(actorData) {
+    if(actorData.type !== Constants.Types.NPC) {
+      return;
+    }
+
+    const data = actorData.data;
+    data.base.name = 'Grunt ' + Math.floor(Math.random() * 10);
+  }
+  
   /** @inheritdoc */
   prepareDerivedData() {
-    super.prepareDerivedData();
-    this.data.data.groups = this.data.data.groups || {};
-    this.data.data.attributes = this.data.data.attributes || {};
-    EntitySheetHelper.clampResourceValues(this.data.data.attributes);
+    const actorData = this.data;
+    const { data } = actorData;
+    const flags = actorData.flags.shadowrun4 || {};
+
+    this._prepareRunnerData(actorData);
+    this._prepareNpcData(actorData);
   }
 
   /* -------------------------------------------- */
@@ -34,36 +55,64 @@ export class SR4Actor extends Actor {
   /* -------------------------------------------- */
   /*  Roll Data Preparation                       */
   /* -------------------------------------------- */
+  _getNpcRollData(data) {
+    if (this.data.type !== Constants.Types.NPC) {
+      return;
+    }
+  
+    // Process additional NPC data here.
+  }
+
+  _getRunnerRollData(data) {
+    if (this.data.type !== Constants.Types.Runner) {
+      return;
+    }
+  
+    if(data.attributes) {
+      const atts = Object.entries(data.attributes);
+      for (const [k, v] of atts) {
+        data[k] = foundry.utils.deepClone(v);
+      }
+    }
+  }
 
   /** @inheritdoc */
   getRollData() {
+    const actorData = super.getRollData();
 
-    // Copy the actor's system data
-    const data = this.toObject(false).data;
-    const shorthand = game.settings.get("shadowrun4", "macroShorthand");
-    const formulaAttributes = [];
-    const itemAttributes = [];
+    this._getRunnerRollData(actorData);
+    this._getNpcRollData(actorData);
 
-    // Handle formula attributes when the short syntax is disabled.
-    this._applyShorthand(data, formulaAttributes, shorthand);
-
-    // Map all items data using their slugified names
-    this._applyItems(data, itemAttributes, shorthand);
-
-    // Evaluate formula replacements on items.
-    this._applyItemsFormulaReplacements(data, itemAttributes, shorthand);
-
-    // Evaluate formula attributes after all other attributes have been handled, including items.
-    this._applyFormulaReplacements(data, formulaAttributes, shorthand);
-
-    // Remove the attributes if necessary.
-    if ( !!shorthand ) {
-      delete data.attributes;
-      delete data.attr;
-      delete data.groups;
-    }
-    return data;
+    return actorData;
   }
+  
+  // getRollData() {
+  //   // Copy the actor's system data
+  //   const data = this.toObject(false).data;
+  //   const shorthand = game.settings.get("shadowrun4", "macroShorthand");
+  //   const formulaAttributes = [];
+  //   const itemAttributes = [];
+
+  //   // Handle formula attributes when the short syntax is disabled.
+  //   this._applyShorthand(data, formulaAttributes, shorthand);
+
+  //   // Map all items data using their slugified names
+  //   this._applyItems(data, itemAttributes, shorthand);
+
+  //   // Evaluate formula replacements on items.
+  //   this._applyItemsFormulaReplacements(data, itemAttributes, shorthand);
+
+  //   // Evaluate formula attributes after all other attributes have been handled, including items.
+  //   this._applyFormulaReplacements(data, formulaAttributes, shorthand);
+
+  //   // Remove the attributes if necessary.
+  //   if ( !!shorthand ) {
+  //     delete data.attributes;
+  //     delete data.attr;
+  //     delete data.groups;
+  //   }
+  //   return data;
+  // }
 
   /* -------------------------------------------- */
 

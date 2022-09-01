@@ -82,7 +82,7 @@
         "current": 6
       },
       "initiative": {
-        "dp": 0,
+        "score": 0,
         "ip": 1
       },
       "metatype": {
@@ -129,7 +129,11 @@
       "vehicle": {}
     },
     "runner": {
-      "templates": ["base", "attributes", "edge", "metatype", "skills", "monitors", "movement", "initiative", "essence"]
+      "templates": ["base", "attributes", "edge", "metatype", "skills", "monitors", "movement", "initiative", "essence"],
+      "karma": 0,
+      "streetCred": 0,
+      "notoriety": 0,
+      "publicAwareness": 0
     },
     "npc": {
       "templates": ["base", "attributes", "edge", "metatype", "skills", "monitors", "movement", "initiative", "essence"]
@@ -146,7 +150,7 @@
     }
   },
   "Item": {
-    "types": ["bioware", "cyberware", "meleeWeapon", "rangedWeapon", "blastWeapon", "quality", "spell"],
+    "types": ["bioware", "cyberware", "meleeWeapon", "rangedWeapon", "blastWeapon", "contact", "quality", "spell"],
     "templates": {
       "gear": {
         "availability": 0,
@@ -227,6 +231,9 @@
     "quality": {
       "mods": [],
       "type": "positive"
+    },
+    "contact": {
+      
     }
   }
 }

@@ -1,5 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
-import {ATTRIBUTE_TYPES} from "./constants.js";
+import {ATTRIBUTE_TYPES} from "./constants.mjs";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications

@@ -4,13 +4,14 @@
  */
 
 // Import Modules
-import { SR4Actor } from "./actor.js";
+import { SR4Actor } from "./actor.mjs";
 import { SR4Item } from "./item.js";
 import { SR4ItemSheet } from "./item-sheet.js";
 import { SR4ActorSheet } from "./actor-sheet.js";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createShadowrun4Macro } from "./macro.js";
 import { SR4Token, SR4TokenDocument } from "./token.js";
+import Constants from "./constants.mjs";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -20,22 +21,24 @@ import { SR4Token, SR4TokenDocument } from "./token.js";
  * Init hook.
  */
 Hooks.once("init", async function() {
-  console.log(`Initializing Shadowrun4 System`);
+  console.log('Initializing Shadowrun4 System');
+
+  game.shadowrun4 = {
+    SR4Actor,
+    createShadowrun4Macro,
+    useEntity: foundry.utils.isNewerVersion("9", game.version ?? game.data.version)
+  };
 
   /**
    * Set an initiative formula for the system. This will be updated later.
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d20",
-    decimals: 2
+    formula: "(@initiative.ip)d6 + @initiative.score - (@monitors.physical.mod + @monitors.stun.mod)"
   };
 
-  game.shadowrun4 = {
-    SR4Actor: SR4Actor,
-    createShadowrun4Macro,
-    useEntity: foundry.utils.isNewerVersion("9", game.version ?? game.data.version)
-  };
+  CONFIG.SHADOWRUN4 = Constants;
+
 
   // Define custom Document classes
   CONFIG.Actor.documentClass = SR4Actor;
@@ -65,7 +68,7 @@ Hooks.once("init", async function() {
     hint: "SETTINGS.SR4InitFormulaL",
     scope: "world",
     type: String,
-    default: "1d20",
+    default: "1d6+6",
     config: true,
     onChange: formula => _sr4UpdateInit(formula, true)
   });
