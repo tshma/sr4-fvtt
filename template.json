@@ -1,31 +1,233 @@
 {
   "Actor": {
-    "types": ["character"],
-    "character": {
-      "biography": "",
-      "health": {
-        "value": 10,
-        "min": 0,
-        "max": 10
+    "types": ["runner", "npc", "critter", "vehicle"],
+    "templates": {
+      "base": {
+        "name": "",
+        "desc": "",
+        "age": 18,
+        "height": 170,
+        "weight": 60,
+        "gender": "",
+        "aliases": []
       },
-      "power": {
-        "value": 5,
-        "min": 0,
-        "max": 5
+      "attributes": {
+        "bod": {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "agi":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "rea":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "str":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "cha":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "log":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "int":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "wil":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "mag":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        },
+        "res":  {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        }
       },
-      "attributes": {},
-      "groups": {}
+      "edge": {
+        "dp": 0,
+        "current": 0
+      },
+      "essence": {
+        "ess": 6,
+        "current": 6
+      },
+      "initiative": {
+        "dp": 0,
+        "ip": 1
+      },
+      "metatype": {
+        "metatype": "human",
+        "subtype": "",
+        "attMods": {
+          "bod": 0,
+          "agi": 0,
+          "rea": 0,
+          "str": 0,
+          "cha": 0,
+          "log": 0,
+          "int": 0,
+          "wil": 0,
+          "edge": 0
+        },
+        "vision": [],
+        "reach": 0,
+        "mods": []
+      },
+      "skills": {
+
+      },
+      "monitors": {
+        "physical": {
+          "max": 10,
+          "current": 10,
+          "mod": 0,
+          "overflow": 0,
+          "disabled": false
+        },
+        "stun": {
+          "max": 10,
+          "current": 10,
+          "mod": 0,
+          "disabled": false
+        }
+      },
+      "movement": {
+        "walk": 10,
+        "run": 25,
+        "sprint": 25
+      },
+      "vehicle": {}
+    },
+    "runner": {
+      "templates": ["base", "attributes", "edge", "metatype", "skills", "monitors", "movement", "initiative", "essence"]
+    },
+    "npc": {
+      "templates": ["base", "attributes", "edge", "metatype", "skills", "monitors", "movement", "initiative", "essence"]
+    },
+    "critter": {
+      "templates": ["attributes", "edge", "skills", "monitors", "movement", "initiative", "essence"],
+      "type": "",
+      "powers": [],
+      "weaknesses": []
+    },
+    "vehicle": {
+      "templates": ["monitors", "movement", "vehicle"],
+      "mods": []
     }
   },
   "Item": {
-    "types": ["item"],
-    "item": {
-      "description": "",
-      "quantity": 1,
-      "weight": 0,
-      "attributes": {},
-      "groups": {}
+    "types": ["bioware", "cyberware", "meleeWeapon", "rangedWeapon", "blastWeapon", "quality", "spell"],
+    "templates": {
+      "gear": {
+        "availability": 0,
+        "cost": 0,
+        "name": "",
+        "rating": 0,
+        "concealMod": 0,
+        "weight": 0
+      },
+      "implant": {
+        "essence": 0,
+        "capacity": 0,
+        "capacityLoad": 0,
+        "type": "cyber",
+        "grade": 0
+      },
+      "weapon": {
+        "damage": 0,
+        "damageCat": "p",
+        "damageType": "",
+        "ap": 0,
+        "skill": "",
+        "mods": [],
+        "accessories": []
+      },
+      "ranged": {
+        "ranges": [],
+        "modes": [],
+        "ammoCap": 0,
+        "ammoPack": "c",
+        "ammo": 0,
+        "rc": 0,
+        "mounts": []
+      },
+      "melee": {
+        "reach": 0
+      },
+      "ammo": {
+        "ap": 0,
+        "damageMod": 0,
+        "armor": "b"
+      },
+      "blast": {
+        "ranges": [],        
+        "radius": 10,
+        "degerading": 0
+      },
+      "armor": {
+        "balistic": 0,
+        "impact": 0,
+        "fire": 0,
+        "chem": 0,
+        "nonConduct": 0,
+        "cold": 0,
+        "enc": 0
+      }
+    },
+    "meleeWeapon": {
+      "templates": ["gear", "weapon", "melee"]
+    },
+    "rangedWeapon": {
+      "templates": ["gear", "weapon", "ranged"]
+    },
+    "blastWeapon": {
+      "templates": ["gear", "weapon", "blast"]
+    }, 
+    "spell": {
+      "force": 0,
+      "type": "",
+      "subType": ""
+    },
+    "cyberware": {
+      "templates": ["gear", "implant"]
+    },
+    "bioware": {
+      "templates": ["gear", "implant"]
+    },
+    "quality": {
+      "mods": [],
+      "type": "positive"
     }
   }
-  }
+}
   
