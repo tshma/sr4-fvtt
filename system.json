@@ -10,8 +10,8 @@
             "email": "shmaya.tomer@gmail.com"
         }
     ],
-	"esmodules": ["module/simple.js"],
-	"styles": ["styles/simple.css"],
+	"esmodules": ["module/sr4.js"],
+	"styles": ["styles/sr4.css"],
 	"packs": [],
 	"languages": [
 		{
@@ -23,7 +23,9 @@
     "gridDistance": 1,
     "gridUnits": "m",
 	"primaryTokenAttribute": "health",
-	"url": "https://github.com/tshma/sr4-fvtt",
     "compatibleCoreVersion": "9",
-    "minimumCoreVersion": "9"
+    "minimumCoreVersion": "9",
+	"url": "https://github.com/tshma/sr4-fvtt",
+    "manifest": "https://github.com/tshma/sr4-fvtt/blob/master/system.json",
+    "download": "https://github.com/tshma/sr4-fvtt/archive/refs/heads/master.zip"
 }

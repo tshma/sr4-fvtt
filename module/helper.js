@@ -107,7 +107,7 @@ EntitySheetHelper.onSubmit = function(event) {
         let groups = document.querySelectorAll('.group-key');
         for ( let i = 0; i < groups.length; i++ ) {
           if (groups[i].value === val) {
-            ui.notifications.error(game.i18n.localize("SIMPLE.NotifyAttrDuplicate") + ` (${val})`);
+            ui.notifications.error(game.i18n.localize("SR4.NotifyAttrDuplicate") + ` (${val})`);
             el.value = oldVal;
             attrError = true;
             break;
@@ -233,25 +233,25 @@ EntitySheetHelper.validateGroup = function (groupName, document) {
 
     // Check for duplicate group keys.
     if ( groups.includes(groupName) ) {
-      ui.notifications.error(game.i18n.localize("SIMPLE.NotifyGroupDuplicate") + ` (${groupName})`);
+      ui.notifications.error(game.i18n.localize("SR4.NotifyGroupDuplicate") + ` (${groupName})`);
       return false;
     }
 
     // Check for group keys that match attribute keys.
     if ( attributes.includes(groupName) ) {
-      ui.notifications.error(game.i18n.localize("SIMPLE.NotifyGroupAttrDuplicate") + ` (${groupName})`);
+      ui.notifications.error(game.i18n.localize("SR4.NotifyGroupAttrDuplicate") + ` (${groupName})`);
       return false;
     }
 
     // Check for reserved group names.
     if ( ["attr", "attributes"].includes(groupName) ) {
-      ui.notifications.error(game.i18n.format("SIMPLE.NotifyGroupReserved", {key: groupName}));
+      ui.notifications.error(game.i18n.format("SR4.NotifyGroupReserved", {key: groupName}));
       return false;
     }
 
     // Check for whitespace or periods.
     if ( groupName.match(/[\s|\.]/i) ) {
-      ui.notifications.error(game.i18n.localize("SIMPLE.NotifyGroupAlphanumeric"));
+      ui.notifications.error(game.i18n.localize("SR4.NotifyGroupAlphanumeric"));
       return false;
     }
     return true;
@@ -387,8 +387,8 @@ EntitySheetHelper.deleteAttributeGroup = async function (event, app) {
     let group = $(groupHeader).find('.group-key');
     // Create a dialog to confirm group deletion.
     new Dialog({
-      title: game.i18n.localize("SIMPLE.DeleteGroup"),
-      content: `${game.i18n.localize("SIMPLE.DeleteGroupContent")} <strong>${group.val()}</strong>`,
+      title: game.i18n.localize("SR4.DeleteGroup"),
+      content: `${game.i18n.localize("SR4.DeleteGroupContent")} <strong>${group.val()}</strong>`,
       buttons: {
         confirm: {
           icon: '<i class="fas fa-trash"></i>',
@@ -539,7 +539,7 @@ EntitySheetHelper.createDialog = async function(data={}, options={}) {
     const templates = collection.filter(a => a.getFlag("shadowrun4", "isTemplate"));
     const defaultType = this.metadata.types[0];
     const types = {
-      [defaultType]: game.i18n.localize("SIMPLE.NoTemplate")
+      [defaultType]: game.i18n.localize("SR4.NoTemplate")
     }
     for ( let a of templates ) {
       types[a.id] = a.name;
