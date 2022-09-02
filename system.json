@@ -3,14 +3,14 @@
     "id": "shadowrun4",
     "title": "Shadowrun 4th Edition",
     "description": "Shadowrun 4th edition according to 20th Anniversary core rule book",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "authors": [
         {
             "name": "tomer shmaya",
             "email": "shmaya.tomer@gmail.com"
         }
     ],
-	"esmodules": ["module/sr4.js"],
+	"esmodules": ["module/sr4.mjs"],
 	"styles": ["styles/sr4.css"],
 	"packs": [],
 	"languages": [
