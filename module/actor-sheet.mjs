@@ -1,4 +1,4 @@
-import { EntitySheetHelper } from "./helper.js";
+import { EntitySheetHelper } from "./helper.mjs";
 import Constants from "./constants.mjs";
 
 /**
@@ -9,11 +9,12 @@ export class SR4ActorSheet extends ActorSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
+    console.log('setting default');
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["shadowrun4", "sheet", "actor"],
       template: "systems/shadowrun4/templates/actor-sheet.html",
-      width: 600,
-      height: 600,
+      width: 800,
+      height: 200,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
       scrollY: [".base", ".items", ".attributes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
@@ -30,9 +31,10 @@ export class SR4ActorSheet extends ActorSheet {
   /** @inheritdoc */
   getData() {
     const context = super.getData();
-    const actorData = context.actor.data.toObject(false);
+    const actorData = context.actor.data; //.toObject(false);
     context.data = actorData.data;
     context.flags = actorData.flags;
+    context.dtype = Constants.ATTRIBUTE_TYPES;
 
     this._prepateItems(context);
     if(actorData.type === Constants.Types.Runner) {
@@ -40,7 +42,7 @@ export class SR4ActorSheet extends ActorSheet {
     }
 
     context.rollData = context.actor.getRollData();
-    context.effect = prepareActiveEffectsCategories(this.actor.effects);
+    // context.effect = prepareActiveEffectsCategories(this.actor.effects);
     // EntitySheetHelper.getAttributeData(context.data);
     // context.shorthand = !!game.settings.get("shadowrun4", "macroShorthand");
     // context.systemData = context.data.data;
@@ -53,7 +55,6 @@ export class SR4ActorSheet extends ActorSheet {
 
     for(let item of context.items) {
       item.img = item.img || DEFAULT_TOKEN;
-
       if(item.type === Constants.Types.RangedWeapon || item.type === Constants.Types.MeleeWeapon) {
         weapons.push(item);
       } else if(item.type === Constants.Types.Cyberware || item.type === Constants.Types.Bioware) {
