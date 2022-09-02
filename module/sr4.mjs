@@ -7,7 +7,7 @@
 import { SR4Actor } from "./actor.mjs";
 import { SR4Item } from "./item.js";
 import { SR4ItemSheet } from "./item-sheet.js";
-import { SR4ActorSheet } from "./actor-sheet.js";
+import { SR4ActorSheet } from "./actor-sheet.mjs";
 import { preloadHandlebarsTemplates } from "./templates.js";
 import { createShadowrun4Macro } from "./macro.js";
 import { SR4Token, SR4TokenDocument } from "./token.js";

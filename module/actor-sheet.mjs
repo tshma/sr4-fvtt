@@ -1,5 +1,5 @@
 import { EntitySheetHelper } from "./helper.js";
-import { ATTRIBUTE_TYPES } from "./constants.mjs";
+import Constants from "./constants.mjs";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -14,10 +14,15 @@ export class SR4ActorSheet extends ActorSheet {
       template: "systems/shadowrun4/templates/actor-sheet.html",
       width: 600,
       height: 600,
-      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
-      scrollY: [".biography", ".items", ".attributes"],
+      tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
+      scrollY: [".base", ".items", ".attributes"],
       dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
+  }
+
+  /** @override */
+  get template() {
+    return `systems/shadowrun4/templates/actor-${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -25,11 +30,51 @@ export class SR4ActorSheet extends ActorSheet {
   /** @inheritdoc */
   getData() {
     const context = super.getData();
-    EntitySheetHelper.getAttributeData(context.data);
-    context.shorthand = !!game.settings.get("shadowrun4", "macroShorthand");
-    context.systemData = context.data.data;
-    context.dtypes = ATTRIBUTE_TYPES;
+    const actorData = context.actor.data.toObject(false);
+    context.data = actorData.data;
+    context.flags = actorData.flags;
+
+    this._prepateItems(context);
+    if(actorData.type === Constants.Types.Runner) {
+      this._prepareRunnerData(context);
+    }
+
+    context.rollData = context.actor.getRollData();
+    context.effect = prepareActiveEffectsCategories(this.actor.effects);
+    // EntitySheetHelper.getAttributeData(context.data);
+    // context.shorthand = !!game.settings.get("shadowrun4", "macroShorthand");
+    // context.systemData = context.data.data;
+    // context.dtypes = ATTRIBUTE_TYPES;
     return context;
+  }
+
+  _prepateItems(context) {
+    const weapons = [], implants = [], spells = [];
+
+    for(let item of context.items) {
+      item.img = item.img || DEFAULT_TOKEN;
+
+      if(item.type === Constants.Types.RangedWeapon || item.type === Constants.Types.MeleeWeapon) {
+        weapons.push(item);
+      } else if(item.type === Constants.Types.Cyberware || item.type === Constants.Types.Bioware) {
+        implants.push(item);
+      } else if(item.type === Constants.Types.Spell) {
+        spells.push(item);
+      }
+    }
+
+    context.gear = weapons;
+    context.implants = implants;
+    context.spells = spells;    
+  }
+
+  _prepareRunnerData(context) {
+    const atts = Object.entries(context.data.attributes);
+
+    for(let [k, v] of atts) {
+      v.label = game.i18n.localize(CONFIG.Constants.Attributes[k]) ?? k;
+    }
+    
   }
 
   /* -------------------------------------------- */
@@ -38,16 +83,34 @@ export class SR4ActorSheet extends ActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
+    // Render the item sheet for viewing/editing prior to the editable check.
+    html.find('.item-edit').click(ev => {
+      const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      item.sheet.render(true);
+    });
+  
     // Everything below here is only needed if the sheet is editable
-    if ( !this.isEditable ) return;
+    if ( !this.isEditable ) {
+      return;
+    }
 
     // Attribute Management
     html.find(".attributes").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
-    html.find(".groups").on("click", ".group-control", EntitySheetHelper.onClickAttributeGroupControl.bind(this));
     html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAttributeRoll.bind(this));
 
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
+    // Add Inventory Item
+    html.find('.item-create').click(this._onItemCreate.bind(this));
+    // Delete Inventory Item
+    html.find('.item-delete').click(ev => {
+      const li = $(ev.currentTarget).parents(".item");
+      const item = this.actor.items.get(li.data("itemId"));
+      item.delete();
+      li.slideUp(200, () => this.render(false));
+    });
+    // Item Roll
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
     // Add draggable for Macro creation
@@ -106,6 +169,28 @@ export class SR4ActorSheet extends ActorSheet {
   }
 
   /* -------------------------------------------- */
+
+  async _onItemCreate(event) {    
+    event.preventDefault();
+    const header = event.currentTarget;
+    // Get the type of item to create.
+    const type = header.dataset.type;
+    // Grab any data associated with this control.
+    const data = duplicate(header.dataset);
+    // Initialize a default name.
+    const name = `New ${type.capitalize()}`;
+    // Prepare the item object.
+    const itemData = {
+      name: name,
+      type: type,
+      data: data
+    };
+    // Remove the type from the dataset since it's in the itemData.type prop.
+    delete itemData.data["type"];
+
+    // Finally, create the item!
+    return await Item.create(itemData, {parent: this.actor});
+  }
 
   /** @inheritdoc */
   _getSubmitData(updateData) {
