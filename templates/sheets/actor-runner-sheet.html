@@ -2,27 +2,75 @@
 
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img class="profile-img" src="{{actorData.img}}" data-edit="img" title="{{actorData.name}}" height="100" width="100" />
+        <img class="profile-img" src="{{actorData.img}}" data-edit="img" title="{{actorData.name}}" height="100"
+            width="100" />
         <div class="header-fields">
             <h1 class="charname">
                 <input name="name" type="text" value="{{actorData.name}}" placeholder="Name" />
             </h1>
-            <div class="resource">
-                <input type="number" name="data.monitors.physical.current" value="{{data.monitors.physical.current}}"/>
-                <span> / </span>
-                <input type="number" name="data.monitors.physical.max" value="{{data.monitors.physical.max}}"/>
+            <div class="flexcol resources">
+                <div class="flexrow">
+                    <div class="resource">
+                        <label>Physical: </label>
+                        <input type="number" name="data.monitors.physical.current"
+                            value="{{data.monitors.physical.current}}" />
+                        <span> / </span>
+                        <input type="number" name="data.monitors.physical.max" value="{{data.monitors.physical.max}}" />
+                    </div>
+                    <div class="resource">
+                        <label>Stun: </label>
+                        <input type="number" name="data.monitors.stun.current" value="{{data.monitors.stun.current}}" />
+                        <span> / </span>
+                        <input type="number" name="data.monitors.stun.max" value="{{data.monitors.stun.max}}" />
+                    </div>
+                    <div class="resource">
+                        <label>Karma: </label>
+                        <input type="number" name="data.karmaUnused" value="{{data.karmaUnused}}" />
+                        <span> / </span>
+                        <input type="number" name="data.karma" value="{{data.karma}}" />
+                    </div>
+                </div>
+                <div class="flexrow">
+                    <div class="attributes">
+                        {{#each data.attributes as |attribute key|}}                        
+                        <div class="attribute">
+                            <label for="data.attributes.{{key}}.value" class="resource-label">{{key}}</label>
+                            <input type="text" name="data.attributes.{{key}}.value" value="{{attribute.dp}}"
+                                data-dtype="Number" />
+                        </div>
+                        {{/each}}
+                        {{#if data.isAwakened}}
+                        {{#with data.mag}}
+                        <div class="attribute">
+                            <label for="data.attributes.mag.value" class="resource-label">mag</label>
+                            <input type="text" name="data.attributes.mag.value" value="{{dp}}"
+                                data-dtype="Number" />
+                        </div>
+                        {{/with}}
+                        {{/if}}
+                        {{#if data.isTechnomancer}}
+                        {{#with data.res}}
+                        <div class="attribute">
+                            <label for="data.attributes.res.value" class="resource-label">res</label>
+                            <input type="text" name="data.attributes.res.value" value="{{dp}}"
+                                data-dtype="Number" />
+                        </div>
+                        {{/with}}
+                        {{/if}}
+                        <div class="attribute">
+                            <label for="data.attributes.edg.value" class="resource-label">edg</label>
+                            <input type="text" name="data.attributes.edg.value" value="{{data.edge.dp}}"
+                                data-dtype="Number" />
+                        </div>
+                        <div class="attribute">
+                            <label for="data.attributes.ess.value" class="resource-label">ess</label>
+                            <input type="text" name="data.attributes.ess.value" value="{{data.essence.ess}}"
+                                data-dtype="Number" />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="resource">
-                <input type="number" name="data.monitors.stun.current" value="{{data.monitors.stun.current}}"/>
-                <span> / </span>
-                <input type="number" name="data.monitors.stun.max" value="{{data.monitors.stun.max}}"/>
-            </div>
-            <div class="resource">
-                <label>Karma: &nbsp;</label>
-                <input type="number" name="data.karmaUnused" value="{{data.karmaUnused}}" />
-                <span> / </span>
-                <input type="number" name="data.karma" value="{{data.karma}}" />
-            </div>
+        </div>
         </div>
     </header>
 
@@ -38,12 +86,12 @@
 
         {{!-- Base Tab --}}
         <div class="tab description" data-group="primary" data-tab="description">
-          
+
         </div>
 
         {{!-- Owned Items Tab --}}
         <div class="tab items" data-group="primary" data-tab="items">
-            
+
         </div>
 
         {{!-- Attributes Tab --}}
@@ -56,9 +104,9 @@
             </header>
 
             {{!-- Render the attribute list partial. --}}
-           
 
-            {{!-- Render the grouped attributes partial and control. --}}           
+
+            {{!-- Render the grouped attributes partial and control. --}}
         </div>
     </section>
 </form>

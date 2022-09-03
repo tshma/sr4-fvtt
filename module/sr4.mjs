@@ -20,7 +20,7 @@ import Constants from "./constants.mjs";
 /**
  * Init hook.
  */
-Hooks.once("init", async function() {
+Hooks.once("init", async function () {
   console.log('Initializing Shadowrun4 System');
 
   game.shadowrun4 = {
@@ -38,7 +38,7 @@ Hooks.once("init", async function() {
   };
 
   CONFIG.SHADOWRUN4 = Constants;
-
+  // CONFIG.debug.compatibility = CONST.COMPATIBILITY_MODES.ERROR; // only in v10
 
   // Define custom Document classes
   CONFIG.Actor.documentClass = SR4Actor;
@@ -91,12 +91,16 @@ Hooks.once("init", async function() {
   //   CONFIG.Combat.initiative.formula = formula;
   // }
 
-  /**
-   * Slugify a string.
-   */
-  // Handlebars.registerHelper('slugify', function(value) {
-  //   return value.slugify({strict: true});
-  // });
+  Handlebars.registerHelper('modulo', function (value, checkAgainst, isZero = false) {
+    const intValue = parseInt(value);
+    const base = parseInt(checkAgainst);
+
+    if (isZero) {
+      return intValue % base === 0;
+    } else {
+      return intValue % base;
+    }
+  });
 
   // Preload template partials
   await preloadHandlebarsTemplates();

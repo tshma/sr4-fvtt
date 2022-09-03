@@ -64,18 +64,6 @@
             "augment": 0,
             "dp": 0,
             "mod": 0
-          },
-          "mag": {
-            "base": 0,
-            "augment": 0,
-            "dp": 0,
-            "mod": 0
-          },
-          "res": {
-            "base": 0,
-            "augment": 0,
-            "dp": 0,
-            "mod": 0
           }
         }
       },
@@ -88,7 +76,7 @@
       "essence": {
         "essence": {
           "ess": 6,
-          "current": 6
+          "drained": 0
         }
       },
       "initiative": {
@@ -148,6 +136,24 @@
           "sprint": 25
         }
       },
+      "awakened": {
+        "isAwakened": true,
+        "mag": {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        }
+      },
+      "technomancer": {
+        "isTechnomancer": true,
+        "res": {
+          "base": 0,
+          "augment": 0,
+          "dp": 0,
+          "mod": 0
+        }
+      },
       "vehicle": {}
     },
     "runner": {
@@ -160,7 +166,9 @@
         "monitors",
         "movement",
         "initiative",
-        "essence"
+        "essence",
+        "awakened",
+        "technomancer"
       ],
       "karmaUnused": 0,
       "karma": 0,
