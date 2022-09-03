@@ -1,5 +1,3 @@
-import { ATTRIBUTE_TYPES } from "./constants.mjs";
-
 export function EntitySheetHelper() {};
 
 EntitySheetHelper.getAttributeData = function(data) {

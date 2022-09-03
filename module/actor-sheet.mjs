@@ -1,5 +1,4 @@
-import { EntitySheetHelper } from "./helper.mjs";
-import Constants from "./constants.mjs";
+// import { EntitySheetHelper } from "./helper.mjs";
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -9,21 +8,20 @@ export class SR4ActorSheet extends ActorSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
-    console.log('setting default');
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["shadowrun4", "sheet", "actor"],
-      template: "systems/shadowrun4/templates/actor-sheet.html",
-      width: 800,
-      height: 200,
+      template: "systems/shadowrun4/templates/sheets/actor-sheet.html",
+      width: 700,
+      height: 700,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
-      scrollY: [".base", ".items", ".attributes"],
-      dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
+      // scrollY: [".items", ".attributes"],
+      // dragDrop: [{dragSelector: ".item-list .item", dropSelector: null}]
     });
   }
 
   /** @override */
   get template() {
-    return `systems/shadowrun4/templates/actor-${this.actor.data.type}-sheet.html`;
+    return `systems/shadowrun4/templates/sheets/actor-${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */
@@ -31,13 +29,14 @@ export class SR4ActorSheet extends ActorSheet {
   /** @inheritdoc */
   getData() {
     const context = super.getData();
-    const actorData = context.actor.data; //.toObject(false);
+    const actorData = context.actor.data.toObject(false);
+    context.actorData = actorData;
     context.data = actorData.data;
     context.flags = actorData.flags;
-    context.dtype = Constants.ATTRIBUTE_TYPES;
+    context.dtype = CONFIG.SHADOWRUN4.ATTRIBUTE_TYPES;
 
     this._prepateItems(context);
-    if(actorData.type === Constants.Types.Runner) {
+    if(actorData.type === CONFIG.SHADOWRUN4.Types.Runner) {
       this._prepareRunnerData(context);
     }
 
@@ -55,11 +54,11 @@ export class SR4ActorSheet extends ActorSheet {
 
     for(let item of context.items) {
       item.img = item.img || DEFAULT_TOKEN;
-      if(item.type === Constants.Types.RangedWeapon || item.type === Constants.Types.MeleeWeapon) {
+      if(item.type === CONFIG.SHADOWRUN4.Types.RangedWeapon || item.type === CONFIG.SHADOWRUN4.Types.MeleeWeapon) {
         weapons.push(item);
-      } else if(item.type === Constants.Types.Cyberware || item.type === Constants.Types.Bioware) {
+      } else if(item.type === CONFIG.SHADOWRUN4.Types.Cyberware || item.type === CONFIG.SHADOWRUN4.Types.Bioware) {
         implants.push(item);
-      } else if(item.type === Constants.Types.Spell) {
+      } else if(item.type === CONFIG.SHADOWRUN4.Types.Spell) {
         spells.push(item);
       }
     }
@@ -70,12 +69,14 @@ export class SR4ActorSheet extends ActorSheet {
   }
 
   _prepareRunnerData(context) {
-    const atts = Object.entries(context.data.attributes);
+    const attsData = context?.data?.attributes;
+    const atts = attsData && Object.entries(attsData);
 
-    for(let [k, v] of atts) {
-      v.label = game.i18n.localize(CONFIG.Constants.Attributes[k]) ?? k;
+    if(atts != null) {
+      for(let [k, v] of atts) {
+        v.label = game.i18n.localize(CONFIG.SHADOWRUN4.Attributes[k]) ?? k;
+      }
     }
-    
   }
 
   /* -------------------------------------------- */
@@ -83,22 +84,11 @@ export class SR4ActorSheet extends ActorSheet {
   /** @inheritdoc */
   activateListeners(html) {
     super.activateListeners(html);
-
-    // Render the item sheet for viewing/editing prior to the editable check.
-    html.find('.item-edit').click(ev => {
-      const li = $(ev.currentTarget).parents(".item");
-      const item = this.actor.items.get(li.data("itemId"));
-      item.sheet.render(true);
-    });
   
     // Everything below here is only needed if the sheet is editable
     if ( !this.isEditable ) {
       return;
     }
-
-    // Attribute Management
-    html.find(".attributes").on("click", ".attribute-control", EntitySheetHelper.onClickAttributeControl.bind(this));
-    html.find(".attributes").on("click", "a.attribute-roll", EntitySheetHelper.onAttributeRoll.bind(this));
 
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
@@ -115,13 +105,13 @@ export class SR4ActorSheet extends ActorSheet {
     html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
     // Add draggable for Macro creation
-    html.find(".attributes a.attribute-roll").each((i, a) => {
-      a.setAttribute("draggable", true);
-      a.addEventListener("dragstart", ev => {
-        let dragData = ev.currentTarget.dataset;
-        ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
-      }, false);
-    });
+    // html.find(".attributes a.attribute-roll").each((i, a) => {
+    //   a.setAttribute("draggable", true);
+    //   a.addEventListener("dragstart", ev => {
+    //     let dragData = ev.currentTarget.dataset;
+    //     ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
+    //   }, false);
+    // });
   }
 
   /* -------------------------------------------- */
@@ -196,8 +186,8 @@ export class SR4ActorSheet extends ActorSheet {
   /** @inheritdoc */
   _getSubmitData(updateData) {
     let formData = super._getSubmitData(updateData);
-    formData = EntitySheetHelper.updateAttributes(formData, this.object);
-    formData = EntitySheetHelper.updateGroups(formData, this.object);
+    // formData = EntitySheetHelper.updateAttributes(formData, this.object);
+    // formData = EntitySheetHelper.updateGroups(formData, this.object);
     return formData;
   }
 }

@@ -1,4 +1,4 @@
-import {EntitySheetHelper} from "./helper.js";
+import {EntitySheetHelper} from "./helper.mjs";
 
 /**
  * Extend the base Item document to support attributes and groups with a custom template creation dialog.

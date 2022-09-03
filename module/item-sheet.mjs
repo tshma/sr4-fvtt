@@ -1,5 +1,5 @@
-import { EntitySheetHelper } from "./helper.js";
-import {ATTRIBUTE_TYPES} from "./constants.mjs";
+import { EntitySheetHelper } from "./helper.mjs";
+import Constants from "./constants.mjs";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
@@ -26,7 +26,7 @@ export class SR4ItemSheet extends ItemSheet {
     const context = super.getData();
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.data;
-    context.dtypes = ATTRIBUTE_TYPES;
+    context.dtypes = Constants.ATTRIBUTE_TYPES;
     return context;
   }
 

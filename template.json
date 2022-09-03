@@ -1,9 +1,13 @@
 {
   "Actor": {
-    "types": ["runner", "npc", "critter", "vehicle"],
+    "types": [
+      "runner",
+      "npc",
+      "critter",
+      "vehicle"
+    ],
     "templates": {
       "base": {
-        "name": "",
         "desc": "",
         "age": 18,
         "height": 170,
@@ -12,145 +16,205 @@
         "aliases": []
       },
       "attributes": {
-        "bod": {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "agi":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "rea":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "str":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "cha":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "log":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "int":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "wil":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "mag":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
-        },
-        "res":  {
-          "base": 0,
-          "augment": 0,
-          "dp": 0,
-          "mod": 0
+        "attributes": {
+          "bod": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "agi": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "rea": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "str": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "cha": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "log": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "int": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "wil": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "mag": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          },
+          "res": {
+            "base": 0,
+            "augment": 0,
+            "dp": 0,
+            "mod": 0
+          }
         }
       },
       "edge": {
-        "dp": 0,
-        "current": 0
+        "edge": {
+          "dp": 0,
+          "current": 0
+        }
       },
       "essence": {
-        "ess": 6,
-        "current": 6
+        "essence": {
+          "ess": 6,
+          "current": 6
+        }
       },
       "initiative": {
-        "score": 0,
-        "ip": 1
+        "initiative": {
+          "score": 0,
+          "ip": 1
+        }
       },
       "metatype": {
-        "metatype": "human",
-        "subtype": "",
-        "attMods": {
-          "bod": 0,
-          "agi": 0,
-          "rea": 0,
-          "str": 0,
-          "cha": 0,
-          "log": 0,
-          "int": 0,
-          "wil": 0,
-          "edge": 0
-        },
-        "vision": [],
-        "reach": 0,
-        "mods": []
+        "metatype": {
+          "type": "human",
+          "subtype": "",
+          "attMods": {
+            "bod": 0,
+            "agi": 0,
+            "rea": 0,
+            "str": 0,
+            "cha": 0,
+            "log": 0,
+            "int": 0,
+            "wil": 0,
+            "edge": 0
+          },
+          "vision": [],
+          "reach": 0,
+          "mods": []
+        }
       },
       "skills": {
-
+        "skills": {
+          "active": {},
+          "knowledge": {},
+          "languages": {}
+        }
       },
       "monitors": {
-        "physical": {
-          "max": 10,
-          "current": 10,
-          "mod": 0,
-          "overflow": 0,
-          "disabled": false
-        },
-        "stun": {
-          "max": 10,
-          "current": 10,
-          "mod": 0,
-          "disabled": false
+        "monitors": {
+          "physical": {
+            "max": 10,
+            "current": 10,
+            "mod": 0,
+            "overflow": 0,
+            "disabled": false
+          },
+          "stun": {
+            "max": 10,
+            "current": 10,
+            "mod": 0,
+            "disabled": false
+          }
         }
       },
       "movement": {
-        "walk": 10,
-        "run": 25,
-        "sprint": 25
+        "movement": {
+          "walk": 10,
+          "run": 25,
+          "sprint": 25
+        }
       },
       "vehicle": {}
     },
     "runner": {
-      "templates": ["base", "attributes", "edge", "metatype", "skills", "monitors", "movement", "initiative", "essence"],
+      "templates": [
+        "base",
+        "attributes",
+        "edge",
+        "metatype",
+        "skills",
+        "monitors",
+        "movement",
+        "initiative",
+        "essence"
+      ],
+      "karmaUnused": 0,
       "karma": 0,
       "streetCred": 0,
       "notoriety": 0,
       "publicAwareness": 0
     },
     "npc": {
-      "templates": ["base", "attributes", "edge", "metatype", "skills", "monitors", "movement", "initiative", "essence"]
+      "templates": [
+        "base",
+        "attributes",
+        "edge",
+        "metatype",
+        "skills",
+        "monitors",
+        "movement",
+        "initiative",
+        "essence"
+      ]
     },
     "critter": {
-      "templates": ["attributes", "edge", "skills", "monitors", "movement", "initiative", "essence"],
+      "templates": [
+        "attributes",
+        "edge",
+        "skills",
+        "monitors",
+        "movement",
+        "initiative",
+        "essence"
+      ],
       "type": "",
       "powers": [],
       "weaknesses": []
     },
     "vehicle": {
-      "templates": ["monitors", "movement", "vehicle"],
+      "templates": [
+        "monitors",
+        "movement",
+        "vehicle"
+      ],
       "mods": []
     }
   },
   "Item": {
-    "types": ["bioware", "cyberware", "meleeWeapon", "rangedWeapon", "blastWeapon", "contact", "quality", "spell"],
+    "types": [
+      "bioware",
+      "cyberware",
+      "meleeWeapon",
+      "rangedWeapon",
+      "blastWeapon",
+      "contact",
+      "quality",
+      "spell"
+    ],
     "templates": {
       "gear": {
         "availability": 0,
@@ -189,12 +253,12 @@
         "reach": 0
       },
       "ammo": {
-        "ap": 0,
+        "apMod": 0,
         "damageMod": 0,
-        "armor": "b"
+        "armorUsed": "b"
       },
       "blast": {
-        "ranges": [],        
+        "ranges": [],
         "radius": 10,
         "degerading": 0
       },
@@ -209,32 +273,50 @@
       }
     },
     "meleeWeapon": {
-      "templates": ["gear", "weapon", "melee"]
+      "templates": [
+        "gear",
+        "weapon",
+        "melee"
+      ]
     },
     "rangedWeapon": {
-      "templates": ["gear", "weapon", "ranged"]
+      "templates": [
+        "gear",
+        "weapon",
+        "ranged"
+      ]
     },
     "blastWeapon": {
-      "templates": ["gear", "weapon", "blast"]
-    }, 
+      "templates": [
+        "gear",
+        "weapon",
+        "blast"
+      ]
+    },
     "spell": {
       "force": 0,
       "type": "",
       "subType": ""
     },
     "cyberware": {
-      "templates": ["gear", "implant"]
+      "templates": [
+        "gear",
+        "implant"
+      ]
     },
     "bioware": {
-      "templates": ["gear", "implant"]
+      "templates": [
+        "gear",
+        "implant"
+      ]
     },
     "quality": {
       "mods": [],
       "type": "positive"
     },
     "contact": {
-      
+      "loyalty": 0,
+      "connection": 0
     }
   }
 }
-  

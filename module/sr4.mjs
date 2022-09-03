@@ -5,12 +5,12 @@
 
 // Import Modules
 import { SR4Actor } from "./actor.mjs";
-import { SR4Item } from "./item.js";
-import { SR4ItemSheet } from "./item-sheet.js";
+import { SR4Item } from "./item.mjs";
+import { SR4ItemSheet } from "./item-sheet.mjs";
 import { SR4ActorSheet } from "./actor-sheet.mjs";
-import { preloadHandlebarsTemplates } from "./templates.js";
-import { createShadowrun4Macro } from "./macro.js";
-import { SR4Token, SR4TokenDocument } from "./token.js";
+import { preloadHandlebarsTemplates } from "./templates.mjs";
+import { createShadowrun4Macro } from "./macro.mjs";
+import { SR4Token, SR4TokenDocument } from "./token.mjs";
 import Constants from "./constants.mjs";
 
 /* -------------------------------------------- */
@@ -25,7 +25,7 @@ Hooks.once("init", async function() {
 
   game.shadowrun4 = {
     SR4Actor,
-    createShadowrun4Macro,
+    SR4Item,
     useEntity: foundry.utils.isNewerVersion("9", game.version ?? game.data.version)
   };
 
@@ -53,50 +53,50 @@ Hooks.once("init", async function() {
   Items.registerSheet("shadowrun4", SR4ItemSheet, { makeDefault: true });
 
   // Register system settings
-  game.settings.register("shadowrun4", "macroShorthand", {
-    name: "SETTINGS.SR4MacroShorthandN",
-    hint: "SETTINGS.SR4MacroShorthandL",
-    scope: "world",
-    type: Boolean,
-    default: true,
-    config: true
-  });
+  // game.settings.register("shadowrun4", "macroShorthand", {
+  //   name: "SETTINGS.SR4MacroShorthandN",
+  //   hint: "SETTINGS.SR4MacroShorthandL",
+  //   scope: "world",
+  //   type: Boolean,
+  //   default: true,
+  //   config: true
+  // });
 
   // Register initiative setting.
-  game.settings.register("shadowrun4", "initFormula", {
-    name: "SETTINGS.SR4InitFormulaN",
-    hint: "SETTINGS.SR4InitFormulaL",
-    scope: "world",
-    type: String,
-    default: "1d6+6",
-    config: true,
-    onChange: formula => _sr4UpdateInit(formula, true)
-  });
+  // game.settings.register("shadowrun4", "initFormula", {
+  //   name: "SETTINGS.SR4InitFormulaN",
+  //   hint: "SETTINGS.SR4InitFormulaL",
+  //   scope: "world",
+  //   type: String,
+  //   default: "1d6+6",
+  //   config: true,
+  //   onChange: formula => _sr4UpdateInit(formula, true)
+  // });
 
   // Retrieve and assign the initiative formula setting.
-  const initFormula = game.settings.get("shadowrun4", "initFormula");
-  _sr4UpdateInit(initFormula);
+  // const initFormula = game.settings.get("shadowrun4", "initFormula");
+  // _sr4UpdateInit(initFormula);
 
   /**
    * Update the initiative formula.
    * @param {string} formula - Dice formula to evaluate.
    * @param {boolean} notify - Whether or not to post nofications.
    */
-  function _sr4UpdateInit(formula, notify = false) {
-    const isValid = Roll.validate(formula);
-    if ( !isValid ) {
-      if ( notify ) ui.notifications.error(`${game.i18n.localize("SR4.NotifyInitFormulaInvalid")}: ${formula}`);
-      return;
-    }
-    CONFIG.Combat.initiative.formula = formula;
-  }
+  // function _sr4UpdateInit(formula, notify = false) {
+  //   const isValid = Roll.validate(formula);
+  //   if ( !isValid ) {
+  //     if ( notify ) ui.notifications.error(`${game.i18n.localize("SR4.NotifyInitFormulaInvalid")}: ${formula}`);
+  //     return;
+  //   }
+  //   CONFIG.Combat.initiative.formula = formula;
+  // }
 
   /**
    * Slugify a string.
    */
-  Handlebars.registerHelper('slugify', function(value) {
-    return value.slugify({strict: true});
-  });
+  // Handlebars.registerHelper('slugify', function(value) {
+  //   return value.slugify({strict: true});
+  // });
 
   // Preload template partials
   await preloadHandlebarsTemplates();
@@ -110,67 +110,67 @@ Hooks.on("hotbarDrop", (bar, data, slot) => createShadowrun4Macro(data, slot));
 /**
  * Adds the actor template context menu.
  */
-Hooks.on("getActorDirectoryEntryContext", (html, options) => {
-  const idAttr = game.shadowrun4.useEntity ? "entityId" : "documentId";
-  // Define an actor as a template.
-  options.push({
-    name: game.i18n.localize("SR4.DefineTemplate"),
-    icon: '<i class="fas fa-stamp"></i>',
-    condition: li => {
-      const actor = game.actors.get(li.data(idAttr));
-      return !actor.isTemplate;
-    },
-    callback: li => {
-      const actor = game.actors.get(li.data(idAttr));
-      actor.setFlag("shadowrun4", "isTemplate", true);
-    }
-  });
+// Hooks.on("getActorDirectoryEntryContext", (html, options) => {
+//   const idAttr = game.shadowrun4.useEntity ? "entityId" : "documentId";
+//   // Define an actor as a template.
+//   options.push({
+//     name: game.i18n.localize("SR4.DefineTemplate"),
+//     icon: '<i class="fas fa-stamp"></i>',
+//     condition: li => {
+//       const actor = game.actors.get(li.data(idAttr));
+//       return !actor.isTemplate;
+//     },
+//     callback: li => {
+//       const actor = game.actors.get(li.data(idAttr));
+//       actor.setFlag("shadowrun4", "isTemplate", true);
+//     }
+//   });
 
-  // Undefine an actor as a template.
-  options.push({
-    name: game.i18n.localize("SR4.UnsetTemplate"),
-    icon: '<i class="fas fa-times"></i>',
-    condition: li => {
-      const actor = game.actors.get(li.data(idAttr));
-      return actor.isTemplate;
-    },
-    callback: li => {
-      const actor = game.actors.get(li.data(idAttr));
-      actor.setFlag("shadowrun4", "isTemplate", false);
-    }
-  });
-});
+//   // Undefine an actor as a template.
+//   options.push({
+//     name: game.i18n.localize("SR4.UnsetTemplate"),
+//     icon: '<i class="fas fa-times"></i>',
+//     condition: li => {
+//       const actor = game.actors.get(li.data(idAttr));
+//       return actor.isTemplate;
+//     },
+//     callback: li => {
+//       const actor = game.actors.get(li.data(idAttr));
+//       actor.setFlag("shadowrun4", "isTemplate", false);
+//     }
+//   });
+// });
 
 /**
  * Adds the item template context menu.
  */
-Hooks.on("getItemDirectoryEntryContext", (html, options) => {
-  const idAttr = game.shadowrun4.useEntity ? "entityId" : "documentId";
-  // Define an item as a template.
-  options.push({
-    name: game.i18n.localize("SR4.DefineTemplate"),
-    icon: '<i class="fas fa-stamp"></i>',
-    condition: li => {
-      const item = game.items.get(li.data(idAttr));
-      return !item.isTemplate;
-    },
-    callback: li => {
-      const item = game.items.get(li.data(idAttr));
-      item.setFlag("shadowrun4", "isTemplate", true);
-    }
-  });
+// Hooks.on("getItemDirectoryEntryContext", (html, options) => {
+//   const idAttr = game.shadowrun4.useEntity ? "entityId" : "documentId";
+//   // Define an item as a template.
+//   options.push({
+//     name: game.i18n.localize("SR4.DefineTemplate"),
+//     icon: '<i class="fas fa-stamp"></i>',
+//     condition: li => {
+//       const item = game.items.get(li.data(idAttr));
+//       return !item.isTemplate;
+//     },
+//     callback: li => {
+//       const item = game.items.get(li.data(idAttr));
+//       item.setFlag("shadowrun4", "isTemplate", true);
+//     }
+//   });
 
-  // Undefine an item as a template.
-  options.push({
-    name: game.i18n.localize("SR4.UnsetTemplate"),
-    icon: '<i class="fas fa-times"></i>',
-    condition: li => {
-      const item = game.items.get(li.data(idAttr));
-      return item.isTemplate;
-    },
-    callback: li => {
-      const item = game.items.get(li.data(idAttr));
-      item.setFlag("shadowrun4", "isTemplate", false);
-    }
-  });
-});
+//   // Undefine an item as a template.
+//   options.push({
+//     name: game.i18n.localize("SR4.UnsetTemplate"),
+//     icon: '<i class="fas fa-times"></i>',
+//     condition: li => {
+//       const item = game.items.get(li.data(idAttr));
+//       return item.isTemplate;
+//     },
+//     callback: li => {
+//       const item = game.items.get(li.data(idAttr));
+//       item.setFlag("shadowrun4", "isTemplate", false);
+//     }
+//   });
+// });
