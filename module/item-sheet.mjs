@@ -1,17 +1,17 @@
-import { EntitySheetHelper } from "./helper.js";
-import {ATTRIBUTE_TYPES} from "./constants.js";
+import { EntitySheetHelper } from "./helper.mjs";
+import Constants from "./constants.mjs";
 
 /**
  * Extend the basic ItemSheet with some very simple modifications
  * @extends {ItemSheet}
  */
-export class SimpleItemSheet extends ItemSheet {
+export class SR4ItemSheet extends ItemSheet {
 
   /** @inheritdoc */
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
-      classes: ["worldbuilding", "sheet", "item"],
-      template: "systems/worldbuilding/templates/item-sheet.html",
+      classes: ["shadowrun4", "sheet", "item"],
+      template: "systems/shadowrun4/templates/item-sheet.html",
       width: 520,
       height: 480,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description"}],
@@ -26,7 +26,7 @@ export class SimpleItemSheet extends ItemSheet {
     const context = super.getData();
     EntitySheetHelper.getAttributeData(context.data);
     context.systemData = context.data.data;
-    context.dtypes = ATTRIBUTE_TYPES;
+    context.dtypes = Constants.ATTRIBUTE_TYPES;
     return context;
   }
 

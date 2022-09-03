@@ -1,10 +1,10 @@
-import {EntitySheetHelper} from "./helper.js";
+import {EntitySheetHelper} from "./helper.mjs";
 
 /**
  * Extend the base Item document to support attributes and groups with a custom template creation dialog.
  * @extends {Item}
  */
-export class SimpleItem extends Item {
+export class SR4Item extends Item {
 
   /** @inheritdoc */
   prepareDerivedData() {
@@ -28,6 +28,6 @@ export class SimpleItem extends Item {
    * @type {boolean}
    */
   get isTemplate() {
-    return !!this.getFlag("worldbuilding", "isTemplate");
+    return !!this.getFlag("shadowrun4", "isTemplate");
   }
 }

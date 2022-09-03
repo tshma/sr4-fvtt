@@ -1,13 +1,13 @@
 <form class="flexcol {{cssClass}}" autocomplete="off">
 
     {{!-- Sheet Header --}}
-    <header class="sheet-header noclass">
-        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" height="100" width="100" />
+    <header class="sheet-header">
+        <img class="profile-img" src="{{actorData.img}}" data-edit="img" title="{{actorData.name}}" height="100" width="100" />
         <div class="header-fields">
-            <h1 class="charname are-we-here">
-                <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
+            <h1 class="charname">
+                <input name="name" type="text" value="{{actorData.name}}" placeholder="Name" />
             </h1>
-            <!-- <div class="resource">
+            <div class="resource">
                 <input type="number" name="data.monitors.physical.current" value="{{data.monitors.physical.current}}"/>
                 <span> / </span>
                 <input type="number" name="data.monitors.physical.max" value="{{data.monitors.physical.max}}"/>
@@ -16,10 +16,12 @@
                 <input type="number" name="data.monitors.stun.current" value="{{data.monitors.stun.current}}"/>
                 <span> / </span>
                 <input type="number" name="data.monitors.stun.max" value="{{data.monitors.stun.max}}"/>
-            </div> -->
+            </div>
             <div class="resource">
-                <span>Karam: &nbsp;</span>
-                <span>{{data.karma}}</span>
+                <label>Karma: &nbsp;</label>
+                <input type="number" name="data.karmaUnused" value="{{data.karmaUnused}}" />
+                <span> / </span>
+                <input type="number" name="data.karma" value="{{data.karma}}" />
             </div>
         </div>
     </header>
