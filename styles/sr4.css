@@ -12,7 +12,7 @@
   height: 100%;
 }
 .shadowrun4 .sheet-header {
-  flex: 0 0 100px;
+  flex: 0 0 180px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -24,10 +24,12 @@
   flex: 0 0 100px;
   height: 100px;
   margin-right: 10px;
+  position: relative;
+  top: -95px;
 }
 .shadowrun4 .sheet-header .header-fields {
   flex: 1;
-  height: 100px;
+  height: 300px;
 }
 .shadowrun4 .sheet-header h1.charname {
   height: 50px;
@@ -40,6 +42,7 @@
   height: 100%;
   margin: 0;
 }
+/* --- resources --- */
 .shadowrun4 .resource {
   width: 33.33%;
   height: 40px;
@@ -51,6 +54,27 @@
   width: 50px;
   height: 28px;
 }
+/* --- attributes --- */
+.shadowrun4 .attributes {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.shadowrun4 .attributes .attribute {
+  display: flex;
+  width: min-content;
+  border: 1px gray solid;
+  border-radius: 4px;
+}
+
+.shadowrun4 .attributes input, .shadowrun4 .attributes label {
+  width: 35px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .shadowrun4 .tabs {
   flex: 0 0 40px;
   border-top: 1px solid #AAA;
