@@ -373,40 +373,6 @@ EntitySheetHelper.createAttributeGroup = async function (event, app) {
   /* -------------------------------------------- */
 
   /**
-   * Delete an attribute group.
-   * @param {MouseEvent} event    The originating left click event
-   * @param {Object} app          The form application object.
-   * @private
-   */
-EntitySheetHelper.deleteAttributeGroup = async function (event, app) {
-    const a = event.currentTarget;
-    let groupHeader = a.closest(".group-header");
-    let groupContainer = groupHeader.closest(".group");
-    let group = $(groupHeader).find('.group-key');
-    // Create a dialog to confirm group deletion.
-    new Dialog({
-      title: game.i18n.localize("SR4.DeleteGroup"),
-      content: `${game.i18n.localize("SR4.DeleteGroupContent")} <strong>${group.val()}</strong>`,
-      buttons: {
-        confirm: {
-          icon: '<i class="fas fa-trash"></i>',
-          label: game.i18n.localize("Yes"),
-          callback: async () => {
-            groupContainer.parentElement.removeChild(groupContainer);
-            await app._onSubmit(event);
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize("No"),
-        }
-      }
-    }).render(true);
-  }
-
-  /* -------------------------------------------- */
-
-  /**
    * Update attributes when updating an actor object.
    * @param {object} formData       The form data object to modify keys and values for.
    * @param {Document} document     The Actor or Item document within which attributes are being updated

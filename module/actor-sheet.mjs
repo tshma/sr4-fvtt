@@ -10,7 +10,7 @@ export class SR4ActorSheet extends ActorSheet {
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["shadowrun4", "sheet", "actor"],
-      template: "systems/shadowrun4/templates/sheets/actor-sheet.html",
+      template: "systems/shadowrun4/templates/actor-sheet.html",
       width: 700,
       height: 700,
       tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "attributes"}],
@@ -21,7 +21,7 @@ export class SR4ActorSheet extends ActorSheet {
 
   /** @override */
   get template() {
-    return `systems/shadowrun4/templates/sheets/actor-${this.actor.data.type}-sheet.html`;
+    return `systems/shadowrun4/templates/actor-${this.actor.data.type}-sheet.html`;
   }
 
   /* -------------------------------------------- */

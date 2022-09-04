@@ -27,8 +27,20 @@ const attributes = {
     'init': 'SR4.AttributeInitiative'
 }
 
+const skills = {
+    'automatics': 'SR4.SkillAutomatics',
+    'computer': 'SR4.SkillComputer',
+    'datasearch': 'SR4.SkillDataSearch',
+    'hardware': 'SR4.SkillHardware',
+    'longarms': 'SR4.SkillLongarms',
+    'pistols': 'SR4.SkillPistols',
+    'sniper': 'SR4.SkillSniper',
+    'software': 'SR4.SkillSoftware',
+};
+
 export default {
     Attributes: attributes,
     ATTRIBUTE_TYPES,
+    Skills: skills,
     Types: types,
 };

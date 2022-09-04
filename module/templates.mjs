@@ -7,8 +7,7 @@ export const preloadHandlebarsTemplates = async function() {
 
   // Define template paths to load
   const templatePaths = [
-    "systems/shadowrun4/templates/sheets/actor-runner-sheet.html",
-    "systems/shadowrun4/templates/actor-sheet.html"
+    "systems/shadowrun4/templates/parts/sheet-skills.html"
   ];
 
   // Load the template parts

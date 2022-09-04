@@ -107,7 +107,80 @@
       },
       "skills": {
         "skills": {
-          "active": {},
+          "active": {
+            "pistols": {
+              "rank": 0,
+              "group": "firearms",
+              "attr": "agi",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            },
+            "automatics": {
+              "rank": 0,
+              "group": "firearms",
+              "attr": "agi",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            },
+            "longarms": {
+              "rank": 0,
+              "group": "firearms",
+              "attr": "agi",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            },
+            "sniper": {
+              "rank": 0,
+              "group": "firearms",
+              "attr": "agi",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            },
+            "hardware": {
+              "rank": 0,
+              "group": "electronics",
+              "attr": "log",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            },
+            "datasearch": {
+              "rank": 0,
+              "group": "electronics",
+              "attr": "log",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            },
+            "computer": {
+              "rank": 0,
+              "group": "electronics",
+              "attr": "log",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            },
+            "software": {
+              "rank": 0,
+              "group": "electronics",
+              "attr": "log",
+              "spec": "",
+              "dp": 0,
+              "mods": [],
+              "default": true
+            }
+          },
           "knowledge": {},
           "languages": {}
         }

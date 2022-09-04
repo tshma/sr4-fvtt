@@ -1,0 +1,26 @@
+<section class="skills-group">
+    <ol class="skills-list">
+        {{#each skills.active as |skill key|}}
+        <li class="skill flexrow" data-skill="{{#if skill.group}}{{skill.group}}.{{/if}}{{key}}">
+            <div class="skill-key-wrapper flexrow">
+                <input class="skill-header grow-2" type="text"
+                       name="data.skills.{{#if skill.group}}{{skill.group}}.{{/if}}{{key}}.key" value="{{key}}"
+                       placeholder='{{localize "SR4.SkillName"}}'/>
+                <input class="skill-header" type="number"
+                       name="data.skills.{{#if skill.group}}{{skill.group}}.{{/if}}{{key}}.value" value="{{skill.rank}}"
+                       placeholder='{{localize "SR4.SkillRanks"}}'/>
+                <input class="skill-header" type="text"
+                       name="data.skills.{{#if skill.group}}{{skill.group}}.{{/if}}{{key}}.attr" value="{{skill.attr}}"
+                       placeholder='{{localize "SR4.SkillAttribute"}}'/>
+                <input class="skill-header" type="number"
+                       name="data.skills.{{#if skill.group}}{{skill.group}}.{{/if}}{{key}}.dp" value="{{skill.dp}}"
+                       placeholder='{{localize "SR4.SkillDp"}}'/>
+                <input class="skill-header" type="text"
+                       name="data.skills.{{#if skill.group}}{{skill.group}}.{{/if}}{{key}}.spec" value="{{skill.spec}}"
+                       placeholder='{{localize "SR4.SkillSpec"}}'/>
+<!--                <a class="skill-control" data-action="delete"><i class="fas fa-trash"></i></a>-->
+            </div>
+        </li>
+        {{/each}}
+    </ol>
+</section>

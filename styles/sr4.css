@@ -74,7 +74,7 @@
   text-align: center;
   text-transform: uppercase;
 }
-
+/*--- tabs ---*/
 .shadowrun4 .tabs {
   flex: 0 0 40px;
   border-top: 1px solid #AAA;
@@ -136,17 +136,16 @@
   flex: none;
   width: auto;
 }
-.shadowrun4 .attributes {
+.shadowrun4 .skills {
   position: relative;
 }
-.shadowrun4 .attributes .attribute-control,
-.shadowrun4 .attributes .group-control {
+.shadowrun4 .skills .skill-control {
   flex: 0 0 20px;
   text-align: center;
   line-height: 28px;
   border: none;
 }
-.shadowrun4 .attributes .attribute-roll {
+.shadowrun4 .skills .skill-roll {
   flex: 0 0 20px;
   text-align: center;
   border-bottom: none;
@@ -154,11 +153,7 @@
   align-items: center;
   justify-content: center;
 }
-.shadowrun4 .attributes .group-prefix {
-  height: 31px;
-  margin-right: 10px;
-}
-.shadowrun4 .attributes .button {
+.shadowrun4 .skills .button {
   width: 100%;
   flex: 1;
   margin: 0;
@@ -169,11 +164,15 @@
   line-height: 28px;
   display: block;
 }
-.shadowrun4 .attributes .attribute-key {
+.shadowrun4 .skills .skill-header {
   background: transparent;
   border: none;
 }
-.shadowrun4 .attributes-header {
+
+.shadowrun4 .skills input.skill-header{
+  padding-left: 10px;
+}
+.shadowrun4 .skills-header {
   position: sticky;
   top: 0;
   left: 0;
@@ -186,12 +185,17 @@
   text-align: left;
   font-weight: bold;
 }
-.shadowrun4 .attributes-list {
+
+.shadowrun4 .grow-2 {
+  flex: 2;
+}
+
+.shadowrun4 .skills-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.shadowrun4 .attributes-list li > * {
+.shadowrun4 .skills-list li > * {
   margin: 0 3px;
   height: 28px;
   line-height: 24px;
@@ -200,64 +204,23 @@
   border-radius: 0;
   border-bottom: 1px solid #AAA;
 }
-.shadowrun4 .attributes-list .attribute-col label {
+.shadowrun4 .skills-list .skill-col label {
   font-size: 10px;
   text-align: center;
   line-height: 1;
 }
-.shadowrun4 .attributes-list .attribute-col input {
+.shadowrun4 .skills-list .skill-col input {
   font-size: 11px;
   text-align: center;
   line-height: 1;
   height: 50%;
 }
-.shadowrun4 .attribute input[type="text"]::placeholder,
-.shadowrun4 .group-header input[type="text"]::placeholder {
+.shadowrun4 .skill input[type="text"]::placeholder {
   opacity: 0;
   transition: opacity 0.25s ease-in-out;
 }
-.shadowrun4 .attribute input[type="text"]:focus::placeholder,
-.shadowrun4 .group-header input[type="text"]:focus::placeholder {
+.shadowrun4 .skill input[type="text"]:focus::placeholder {
   opacity: 1;
-}
-.shadowrun4 .group-controls {
-  margin: 5px;
-}
-.shadowrun4 .groups-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.shadowrun4 .group {
-  margin: 5px 0 0;
-  padding: 0;
-}
-.shadowrun4 .group-header {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid #AAA;
-  border-radius: 2px;
-  padding: 2px 5px;
-}
-.shadowrun4 .group-key,
-.shadowrun4 .group-label {
-  font-weight: bold;
-  border: none;
-  border-bottom: 1px solid #AAA;
-  background: transparent;
-  border-radius: 0;
-  margin-right: 6px;
-}
-.shadowrun4 .group-key {
-  opacity: 0.75;
-}
-.shadowrun4 .group-label {
-  flex: 2;
-}
-.shadowrun4 .group-dtype {
-  height: 24px;
-  flex: 0 0 116px;
-  margin: 0 5px;
 }
 .shadowrun4.sheet.actor {
   min-width: 560px;

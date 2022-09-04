@@ -39,13 +39,11 @@
   "SR4.AttributeEssence": "ESS",
   "SR4.AttributeInitiative": "INIT",
   
-  "SR4.AttributeKey": "Attribute Key",
-  "SR4.AttributeValue": "Value",
-  "SR4.AttributeLabel": "Label",
-  "SR4.AttributeDtype": "Data Type",
-
-  "SR4.DeleteGroup": "Delete group?",
-  "SR4.DeleteGroupContent": "Do you wish to delete this group? This will delete the following group and all attributes included in it: ",
+  "SR4.SkillName": "Skill",
+  "SR4.SkillRanks": "Ranks",
+  "SR4.SkillAttribute": "Attribute",
+  "SR4.SkillDp": "Dice Pool",
+  "SR4.SkillSpec": "Specialization",
 
   "SR4.Create": "Create",
   "SR4.New": "New"
