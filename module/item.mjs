@@ -6,12 +6,21 @@ import {EntitySheetHelper} from "./helper.mjs";
  */
 export class SR4Item extends Item {
 
+  /**
+   * Augment the basic Item data model with additional dynamic data.
+   */
+  /*prepareData() {
+    super.prepareData();
+
+    // Get the Item's data
+    const itemData = this.data;
+    const actorData = this.actor ? this.actor.data : {};
+    const data = itemData.data;
+  }*/
+
   /** @inheritdoc */
   prepareDerivedData() {
     super.prepareDerivedData();
-    this.data.data.groups = this.data.data.groups || {};
-    this.data.data.attributes = this.data.data.attributes || {};
-    EntitySheetHelper.clampResourceValues(this.data.data.attributes);
   }
 
   /* -------------------------------------------- */

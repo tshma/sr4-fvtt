@@ -8,68 +8,68 @@
     ],
     "templates": {
       "base": {
-        "desc": "",
+        "desc": "a fine shadowrunner",
         "age": 18,
         "height": 170,
         "weight": 60,
-        "gender": "",
+        "gender": "shemale",
         "aliases": []
       },
       "attributes": {
         "attributes": {
           "bod": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           },
           "agi": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           },
           "rea": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           },
           "str": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           },
           "cha": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           },
           "log": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           },
           "int": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           },
           "wil": {
-            "base": 0,
+            "base": 1,
             "augment": 0,
-            "dp": 0,
+            "dp": 1,
             "mod": 0
           }
         }
       },
       "edge": {
         "edge": {
-          "dp": 0,
+          "dp": 1,
           "current": 0
         }
       },
@@ -81,7 +81,7 @@
       },
       "initiative": {
         "initiative": {
-          "score": 0,
+          "score": 2,
           "ip": 1
         }
       },
@@ -98,7 +98,7 @@
             "log": 0,
             "int": 0,
             "wil": 0,
-            "edge": 0
+            "edge": 1
           },
           "vision": [],
           "reach": 0,

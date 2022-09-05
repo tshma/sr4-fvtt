@@ -20,8 +20,7 @@ export class SR4Actor extends Actor {
       return;
     }
 
-    const data = actorData.data;
-    data.karma = Math.floor(Math.random() * 50);
+    // const data = actorData.data;
   }
 
   _prepareNpcData(actorData) {

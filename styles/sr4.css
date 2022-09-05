@@ -3,6 +3,15 @@
   /* Items List */
   /* Attributes */
 }
+
+.shadowrun4 .rollable:hover, .shadowrun4 .rollable:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  text-weight: 700;
+  cursor: pointer;
+}
+
+
 .shadowrun4 .window-content {
   height: 100%;
   padding: 5px;

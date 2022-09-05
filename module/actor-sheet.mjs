@@ -90,6 +90,8 @@ export class SR4ActorSheet extends ActorSheet {
       return;
     }
 
+    // Rollable abilities.
+    html.find('.rollable').click(this._onRoll.bind(this));
     // Item Controls
     html.find(".item-control").click(this._onItemControl.bind(this));
     // Add Inventory Item
@@ -102,7 +104,7 @@ export class SR4ActorSheet extends ActorSheet {
       li.slideUp(200, () => this.render(false));
     });
     // Item Roll
-    html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
+    // html.find(".items .rollable").on("click", this._onItemRoll.bind(this));
 
     // Add draggable for Macro creation
     // html.find(".attributes a.attribute-roll").each((i, a) => {
@@ -112,6 +114,27 @@ export class SR4ActorSheet extends ActorSheet {
     //     ev.dataTransfer.setData('text/plain', JSON.stringify(dragData));
     //   }, false);
     // });
+  }
+
+  /**
+   * Handle clickable rolls.
+   * @param {Event} event   The originating click event
+   * @private
+   */
+  async _onRoll(event) {
+    event.preventDefault();
+    const element = event.currentTarget;
+    const dataset = element.dataset;
+
+    if (dataset.roll) {
+      const data = this.actor.getRollData();
+      let roll = new Roll(dataset.roll, data);
+      let label = dataset.label ? `Rolling ${dataset.label}` : '';
+      roll.toMessage({
+        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        flavor: label
+      });
+    }
   }
 
   /* -------------------------------------------- */
